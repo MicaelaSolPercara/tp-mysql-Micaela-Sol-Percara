@@ -125,7 +125,6 @@ UPDATE duenos
 SET direccion = "Campeones Del Mundo 2022"
 WHERE id = 1;
 
-
 UPDATE veterinarios
 SET especialidad = "Perros"
 WHERE matricula = "29";
@@ -134,6 +133,8 @@ UPDATE historial_clinico
 SET descripcion = "Castración"
 WHERE id = 3;
 
+DELETE FROM mascotas
+WHERE id = 3;
 
 
 --Ejercicio 8 – Eliminar registros
@@ -141,12 +142,36 @@ WHERE id = 3;
 2. Verificar que se eliminen automáticamente los registros del historial clínico asociados
 (ON DELETE CASCADE). */
 
+--intenté eliminar una mascota
+DELETE FROM mascotas
+WHERE id = 3;
 
+--como no le habìa puesto el on delete cascade, por ende no se eliminó el historial clínico al haber borrado la mascota, eliminé la tabla y la volví a crear con el on delete cascade
+DROP TABLE historial_clinico;
 
+CREATE TABLE historial_clinico (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_mascota INT,
+    id_veterinario INT,
+    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    descripcion VARCHAR(50) NOT NULL,
+    FOREIGN KEY(id_mascota) REFERENCES mascotas(id) ON DELETE CASCADE,
+    FOREIGN KEY(id_veterinario) REFERENCES veterinarios(id)
+);
 
+INSERT INTO historial_clinico (id_mascota, id_veterinario, fecha_registro, descripcion) VALUES
+(1, 1, '2025-04-18', 'Control anual'),
+(2, 1, '2025-11-02', 'Dolor de patita');
 
+--volvi a agregar una mascota y la eliminé para corroborar que funcionara el on delete cascade
+INSERT INTO mascotas (nombre, especie, fecha_nacimiento, id_dueno) VALUES
+('Penny','Gato', '2024-10-09',3);
 
+INSERT INTO historial_clinico (id_mascota, id_veterinario, fecha_registro, descripcion) VALUES
+(4,2,'2025-11-17','Vacunación');
 
+DELETE FROM mascotas
+WHERE id = 4;
 
 
 --Ejercicio 9 – JOIN simple
