@@ -93,8 +93,25 @@ CREATE TABLE historial_clinico (
 ● 3 registros de historial clínico
  */
 
+INSERT INTO duenos (nombre, apellido, telefono, direccion) VALUES
+('Lionel', 'Messi', '1010101010', 'Rosario 123'),
+('Emma','Watson','12345678', 'Harry Potter 1378'),
+('Paul','McCartney','87654321','The Beatles 4321');
 
 
+INSERT INTO mascotas (nombre, especie, fecha_nacimiento, id_dueno) VALUES
+('Chiquitapia', 'Perro', '2022-12-18', 1),
+('Ron','Perro','2004-07-03', 2),
+('Penny','Gato', '2024-10-09',3); 
+
+INSERT INTO veterinarios (nombre, apellido, matricula, especialidad) VALUES
+('Ezequiel', 'Robles', '32', 'Perros'),
+('Solana','Zapatta', '29', 'Gatos');
+
+INSERT INTO historial_clinico (id_mascota, id_veterinario, fecha_registro, descripcion) VALUES
+(1, 1, '2025-04-18', 'Control anual'),
+(2, 1, '2025-11-02', 'Dolor de patita'),
+(2,2,'2025-11-17','Vacunación');
 
 
 
