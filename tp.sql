@@ -142,11 +142,12 @@ WHERE id = 3;
 2. Verificar que se eliminen automáticamente los registros del historial clínico asociados
 (ON DELETE CASCADE). */
 
---intenté eliminar una mascota
+--Intenté eliminar una mascota
 DELETE FROM mascotas
 WHERE id = 3;
 
---como no le habìa puesto el on delete cascade, por ende no se eliminó el historial clínico al haber borrado la mascota, eliminé la tabla y la volví a crear con el on delete cascade
+--Como no le había puesto el ON DELETE CASCADE, no se eliminó el historial clínico cuando borré la mascota. 
+--Por lo tanto, eliminé la tabla y la volví a crear con el ON DELETE CASCADE
 DROP TABLE historial_clinico;
 
 CREATE TABLE historial_clinico (
@@ -163,7 +164,7 @@ INSERT INTO historial_clinico (id_mascota, id_veterinario, fecha_registro, descr
 (1, 1, '2025-04-18', 'Control anual'),
 (2, 1, '2025-11-02', 'Dolor de patita');
 
---volvi a agregar una mascota y la eliminé para corroborar que funcionara el on delete cascade
+--Agregué nuevamente una mascota y la eliminé para corroborar que funcionara el ON DELETE CASCADE
 INSERT INTO mascotas (nombre, especie, fecha_nacimiento, id_dueno) VALUES
 ('Penny','Gato', '2024-10-09',3);
 
