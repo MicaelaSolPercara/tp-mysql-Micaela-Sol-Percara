@@ -198,3 +198,17 @@ INNER JOIN duenos d ON m.id_dueno = d.id;
 ● Fecha de registro
 ● Descripción
 Ordenados por fecha de registro descendente (DESC). */
+
+
+SELECT
+m.nombre AS nombre_mascota,
+m.especie,
+CONCAT(d.nombre, ' ', d.apellido) AS dueno,
+CONCAT(v.nombre, ' ', v.apellido) AS veterinario,
+historial_clinico.fecha_registro,
+historial_clinico.descripcion
+FROM historial_clinico
+LEFT JOIN mascotas m ON historial_clinico.id_mascota = m.id
+LEFT JOIN duenos d ON m.id_dueno = d.id
+LEFT JOIN veterinarios v ON historial_clinico.id_veterinario = v.id
+ORDER BY historial_clinico.fecha_registro DESC;
