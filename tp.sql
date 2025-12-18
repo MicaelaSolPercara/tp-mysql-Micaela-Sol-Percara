@@ -115,17 +115,24 @@ INSERT INTO historial_clinico (id_mascota, id_veterinario, fecha_registro, descr
 
 
 
-
-
-
 -- Ejercicio 7 – Actualizar registros
 /* Realizar las siguientes actualizaciones:
 1. Cambiar la dirección de un dueño (por ID o nombre).
 2. Actualizar la especialidad de un veterinario (por ID o matrícula).
 3. Editar la descripción de un historial clínico (por ID). */
 
+UPDATE duenos
+SET direccion = "Campeones Del Mundo 2022"
+WHERE id = 1;
 
 
+UPDATE veterinarios
+SET especialidad = "Perros"
+WHERE matricula = "29";
+
+UPDATE historial_clinico
+SET descripcion = "Castración"
+WHERE id = 3;
 
 
 
